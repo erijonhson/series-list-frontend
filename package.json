@@ -1,0 +1,69 @@
+{
+    "name": "series-list-frontend",
+    "version": "2.1.2",
+    "description": "Frontend para organizador de séries. Construído a partir de pamigomp/angularjs-template.",
+    "keywords": [
+        "AngularJS",
+        "seed",
+        "johnpapa",
+        "omdbapi"
+    ],
+    "homepage": "https://github.com/erijonhson/series-list-frontend",
+    "bugs": {
+        "url": "https://github.com/erijonhson/series-list-frontend/issues"
+    },
+    "license": "MIT",
+    "author": "Eri Jonhson",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/erijonhson/series-list-frontend.git"
+    },
+    "main": "server.js",
+    "scripts": {
+        "postinstall": "bower install",
+        "prestart": "npm install",
+        "start": "node server.js",
+        "pretest": "npm install",
+        "test": "grunt karma:unit",
+        "coveralls": "cat ./coverage/*/lcov.info | ./node_modules/.bin/coveralls && rm -rf ./coverage",
+        "test-single-run": "grunt karma:singleRun",
+        "preupdate-webdriver": "npm install",
+        "update-webdriver": "webdriver-manager update",
+        "preprotractor": "npm run update-webdriver",
+        "protractor": "grunt protractor"
+    },
+    "dependencies": {
+        "bower": "^1.7.9",
+        "express": "^4.14.0"
+    },
+    "devDependencies": {
+        "bower": "^1.7.9",
+        "coveralls": "^2.11.9",
+        "grunt": "^1.0.1",
+        "grunt-contrib-concat": "^1.0.1",
+        "grunt-contrib-jshint": "^1.0.0",
+        "grunt-contrib-uglify": "^1.0.1",
+        "grunt-contrib-watch": "^1.0.0",
+        "grunt-jscs": "^3.0.1",
+        "grunt-karma": "^2.0.0",
+        "grunt-protractor-runner": "^3.2.0",
+        "jasmine-core": "^2.4.1",
+        "jasmine-reporters": "^2.2.0",
+        "karma": "^1.1.0",
+        "karma-chrome-launcher": "^1.0.1",
+        "karma-coverage": "^1.0.0",
+        "karma-firefox-launcher": "^1.0.0",
+        "karma-jasmine": "^1.0.2",
+        "karma-junit-reporter": "^1.1.0",
+        "karma-phantomjs-launcher": "^1.0.1",
+        "load-grunt-tasks": "^3.5.0",
+        "phantomjs-prebuilt": "^2.1.7",
+        "protractor": "^3.3.0",
+        "selenium-webdriver": "^2.53.2"
+    },
+    "engines": {
+        "node": "^4.4.6",
+        "npm": "^2.15.5"
+    },
+    "private": false
+}

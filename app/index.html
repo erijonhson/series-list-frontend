@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" data-ng-app="app" data-ng-strict-di class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" data-ng-app="app" data-ng-strict-di class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" data-ng-app="app" data-ng-strict-di class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="pt-BR" data-ng-app="app" data-ng-strict-di class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Series List</title>
+        <meta name="description" content="Series List">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="">
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="bower_components/jquery-ui/themes/smoothness/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="bower_components/angular-toastr/dist/angular-toastr.css" />
+        <link rel='stylesheet' href="bower_components/angular-loading-bar/build/loading-bar.min.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="assets/css/main.css">
+        <link rel="stylesheet" href="assets/css/animate.css">
+        <link rel="stylesheet" href="assets/css/modal.css">
+    </head>
+    <body>
+        <div class="container">
+            <header data-ui-view="header"></header>
+            <nav data-ui-view="menu" role="navigation"></nav>
+            <section data-ui-view="breadcrumbs"></section>
+            <section data-ui-view="content"></section>
+            <footer data-ui-view="footer"></footer>
+        </div>
+
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->     
+
+        <!-- In production use:
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+        <script src="build/angularjs-template-x.x.x.min.js></script>
+        -->
+        <!-- Bower scripts: -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+        <script type='text/javascript' src='bower_components/angular-loading-bar/build/loading-bar.min.js'></script>
+        <!-- Security layer -->
+        <script src="bower_components/md5/build/md5.min.js"></script>
+        <script src="bower_components/ng-token-auth/dist/ng-token-auth.js"></script>
+        <script src="bower_components/angular-cookie/angular-cookie.js"></script>
+        <!-- Application scripts: -->
+        <script src="core/app.js"></script>
+        <script src="core/app.routes.js"></script>
+        <script src="core/navigation/breadcrumbsController.js"></script>
+        <script src="core/navigation/footerController.js"></script>
+        <script src="core/navigation/headerController.js"></script>
+        <script src="core/navigation/menuController.js"></script>
+        <!-- EJOS App -->
+        <script src="core/serie/serieListController.js"></script>
+        <script src="core/serie/Serie.js"></script>
+        <script src="core/serie-repository/omdbService.js"></script>
+        <script src="core/session/sessionController.js"></script>
+        <script src="core/session/sessionService.js"></script>
+        <script src="core/session/User.js"></script>
+        <!-- common -->
+        <script src="common/directives/aboutDirective.js"></script>
+        <script src="common/directives/datepickerDirective.js"></script>
+        <script src="common/directives/modalDialogDirective.js"></script>
+        <script src="common/constants/constants.js"></script>
+    </body>
+</html>

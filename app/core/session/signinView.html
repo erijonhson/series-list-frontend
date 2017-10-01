@@ -1,0 +1,21 @@
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <h3 class="panel-title">Entrar</h3>
+    </div>
+    <div class="panel-body">
+        <form name="UserForm">
+            <div class="form-group has-feedback" data-ng-class="UserForm.email.$valid ? 'has-success' : (UserForm.email.$pristine ? '' : 'has-error')">
+                <label class="control-label" for="email">E-mail:</label>
+                <input id="email" name="email" type="email" data-ng-model="SC.user.email" class="form-control" required />
+                <span class="glyphicon form-control-feedback" data-ng-class="UserForm.email.$valid ? 'glyphicon-ok' : (UserForm.email.$pristine ? '' : 'glyphicon-remove')"></span>
+            </div>
+            <div class="form-group has-feedback" data-ng-class="UserForm.password.$valid ? 'has-success' : (UserForm.password.$pristine ? '' : 'has-error')">
+                <label class="control-label" for="password">Senha:</label>
+                <input id="password" name="password" type="password" minlength="6" maxlength="150" data-ng-model="SC.user.password" class="form-control" required />
+                <span class="glyphicon form-control-feedback" data-ng-class="UserForm.password.$valid ? 'glyphicon-ok' : (UserForm.password.$pristine ? '' : 'glyphicon-remove')"></span>
+            </div>
+            <button id="save-btn" class="btn btn-success" data-ng-click="SC.signin(SC.user)" data-ng-disabled="UserForm.$invalid">Entrar <span class="glyphicon glyphicon-ok"></span></button>
+            <span>Ainda não é membro? <a href="#/signup">Cadastre-se</a></span>
+        </form>
+    </div>
+</div>

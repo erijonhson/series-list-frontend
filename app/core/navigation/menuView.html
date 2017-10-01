@@ -1,0 +1,20 @@
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a id="app-title" class="navbar-brand">Series List</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li data-ng-class="MC.getClass('root.series.watching')"><a id="watching-list-page-link" data-ui-sref="root.series.watching">Acompanhando</a></li>
+                <li data-ng-class="MC.getClass('root.series.wishing')"><a id="wishing-list-page-link" data-ui-sref="root.series.wishing">Desejo acompanhar</a></li>
+                <li ng-show="MC.userLogged()" ng-click="MC.logout()" data-ng-class="MC.getClass('root.signin')"><a id="login-page-link" data-ui-sref="root.signin">Sair</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

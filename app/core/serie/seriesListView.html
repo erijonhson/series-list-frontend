@@ -1,0 +1,42 @@
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Organizador de Séries</h3>
+    </div>
+    <div class="panel-body">
+        <div class="container">
+          <!-- serie -->
+          <div class="row">
+            <div ng-repeat="serie in SLC.getSeries() track by $index">
+                <div class="col-md-4">
+                  <div class="thumbnail" ng-if="serie !== undefined && serie !== null" >
+                      <a href="#!/serie/{{serie.imdbID}}" >
+                        <img src="{{serie.posterUrl}}" alt="{{serie.title}}" style="width:100%">
+                      </a>
+                        <div class="caption">
+                          <p>{{serie.title}}</p>
+                        </div>
+                      <div class="panel-body">
+                          <button 
+                              ng-if="SLC.isWatchingSeries(serie) && SLC.isWatchingView()" id="delete-btn-1"
+                              data-ng-click="SLC.removeUserSeries(serie)" class="btn btn-danger" >
+                              Desisti <span class="glyphicon glyphicon-remove"></span></button>
+                          <button ng-if="!SLC.isWatchingView()" id="add-btn-1" class="btn btn-success" 
+                              data-ng-click="SLC.addUserSeries(serie)" >
+                              Assistindo <span class="glyphicon glyphicon-plus"></span></button>
+                      </div>
+                      <div class="panel-body">
+                          <button ng-if="SLC.isWishingSeries(serie)" id="delete-btn-2" class="btn btn-danger" 
+                              data-ng-click="SLC.removeWishingSeries(serie)" >
+                              Desisti <span class="glyphicon glyphicon-remove"></span></button>
+                          <button ng-if="!SLC.isWatchingSeries(serie)" id="add-btn-2" class="btn btn-success" 
+                              data-ng-click="SLC.addWishingSeries(serie)" >
+                              Desejo assistir <span class="glyphicon glyphicon-plus"></span></button>
+                      </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>

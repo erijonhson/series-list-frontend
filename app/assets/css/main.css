@@ -1,0 +1,10 @@
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+.done-true {
+    text-decoration: line-through;
+    color: #ddd;
+}
+.form-control[disabled], .form-control[readonly], .fieldset[disabled], .form-control {
+    cursor: pointer;
+    background-color: white;
+}
