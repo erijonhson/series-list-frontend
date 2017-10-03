@@ -20,7 +20,7 @@
             const path = $location.path();
             if (path.includes('wishing')) {
                 vm.series.list = vm.currentUser.getWishingList();
-            } else if (path.includes('watching')) {
+            } else if (vm.series.list.length == 0 || path.includes('watching')) {
                 vm.series.list = vm.currentUser.getWatchingList();
             }
             return vm.series.list;
@@ -47,11 +47,8 @@
         }
 
         vm.addWatchingSeries = function(serie) {
-            return vm.currentUser.addWatchingSeries(serie);
-        }
-
-        vm.removeWatchingSeries = function(serie) {
-            return vm.currentUser.removeWatchingSeries(serie);
+            serie.serie_type = 'watching';
+            return vm.currentUser.addOrUpdateSerie(serie);
         }
 
         vm.isWishingSeries = function(serie) {
@@ -59,11 +56,12 @@
         }
 
         vm.addWishingSeries = function(serie) {
-            return vm.currentUser.addWishingSeries(serie);
+            serie.serie_type = 'wishing';
+            return vm.currentUser.addOrUpdateSerie(serie);
         }
 
-        vm.removeWishingSeries = function(serie) {
-            return vm.currentUser.removeWishingSeries(serie);
+        vm.deleteSeries = function(serie) {
+            return vm.currentUser.deleteSerie(serie);
         }
     }
 

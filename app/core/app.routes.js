@@ -150,10 +150,10 @@
                         }
                     },
                     resolve: {
-                        doSignin: function ($location, sessionService) {
+                        checkLogged: function ($location, sessionService) {
                             if (sessionService.isLoggedIn()) {
-                                // $state.go('root.series.list');
-                                $location.path('/series/list');
+                                // $state.go('root.series.search');
+                                $location.path('/series/search');
                             }
                         }
                     }
@@ -213,6 +213,7 @@
     run.$inject = ['$rootScope', '$location', 'toastr'];
     function run($rootScope, $location, toastr) {
         $rootScope.$on('auth:invalid', function(ev) {
+            localStorage.setItem('loggedUser', null);
             toastr.error('Faça login para continuar!');
             $location.path('/').replace();
             $rootScope.$apply();

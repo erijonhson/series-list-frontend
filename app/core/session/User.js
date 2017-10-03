@@ -28,44 +28,42 @@
         User.prototype.addOrUpdateSerie = function(serie) {
             var temp = this;
             serie.user_id = temp.id;
-            return serie.addOrUpdateSerie().then(function(data) {
-                const serie = new Serie(data.data);
+            var serieCtrl = getSerie(temp.watching.concat(temp.wishing), serie)
+                                || serie;
+            return serieCtrl.addOrUpdateSerie().then(function(data) {
+                const serverSerie = new Serie(data.data.data);
 
                 // update
-                var updated = tryUpdateSerie(temp.watching, serie) 
-                                || tryUpdateSerie(temp.wishing, serie);
+                var updated = tryUpdateSerie(temp.watching, serverSerie) 
+                                || tryUpdateSerie(temp.wishing, serverSerie);
 
                 // add
                 if (!updated) {
-                    addSerie(serie);
+                    if (serverSerie.serie_type === 'watching')
+                        addSerie(temp.watching, serverSerie);
+                    else
+                        addSerie(temp.wishing, serverSerie);
                 }
 
-                return { data: serie };
+                return { data: serverSerie };
             });
         }
 
         /**
-         * Delete user's serie.
+         * Get serie from list.
          */
-        User.prototype.deleteSerie = function(todo) {
-            const serie = angular.copy(todo);
-            var temp = this;
-            return todo.deleteTodo().then(function(data) {
-                temp.watching = tryDeleteSerie(temp.watching, serie.id);
-                temp.wishing = tryDeleteSerie(temp.wishing, serie.id);
-                return { data: serie };
+        function getSerie(list, serie) {
+            return list.find(function(s) {
+                return serie.imdb === s.imdb;
             });
         }
 
         /**
-         * Add serie by type.
+         * Add serie in list.
          */
-        function addSerie(serie) {
-            var temp = this;
-            if (serie.type_serie === "watching" || serie.type_serie == 0)
-                temp.watching.push(serie);
-            else
-                temp.wishing.push(serie);
+        function addSerie(list, serie) {
+            var inList = getSerie(list, serie);
+            if (!inList) list.push(serie);
         }
 
         /**
@@ -73,7 +71,7 @@
          */
         function tryUpdateSerie(list, serie) {
             for (var i = list.length - 1; i >= 0; i--) {
-                if (list[i].id == serie.id) {
+                if (list[i].imdb === serie.imdb) {
                     list[i] = serie;
                     return true;
                 }
@@ -82,11 +80,24 @@
         }
 
         /**
-         * Try to delete a series, return list updated.
+         * Delete user's serie.
          */
-        function tryDeleteSerie(list, idSerie) {
-            return list.filter(function(item) {
-                return item.id != idSerie;
+        User.prototype.deleteSerie = function(serie) {
+            const deletedSerie = angular.copy(serie);
+            var temp = this;
+            return serie.remove().then(function(data) {
+                temp.watching = tryRemoveSeries(temp.watching, deletedSerie);
+                temp.wishing = tryRemoveSeries(temp.wishing, deletedSerie);
+                return { data: deletedSerie };
+            });
+        }
+
+        /**
+         * Try to remove a series of the list.
+         */
+        function tryRemoveSeries(list, serie) {
+            return list.filter(function(s) {
+                return serie.imdb !== s.imdb;
             });
         }
 
@@ -102,7 +113,10 @@
                 temp.watching = [];
                 temp.wishing = [];
                 response.data.data.forEach(function(s) {
-                    addSerie(new Serie(s));
+                    if (s.attributes['serie-type'] === 'watching')
+                        addSerie(temp.watching, new Serie(s));
+                    else 
+                        addSerie(temp.wishing, new Serie(s));
                 });
                 return { data: 'success' };
             }
@@ -122,12 +136,32 @@
             return this.wishing;
         }
 
+        /**
+         * Check if exists series in watching series list of the User.
+         */
+        User.prototype.isWatchingSeries = function(serie) {
+            return this.watching.find(function(s) {
+                return serie.imdb === s.imdb;
+            });
+        }
+
+        /**
+         * Check if exists series in wishing series list of the User.
+         */
+        User.prototype.isWishingSeries = function(serie) {
+            return this.wishing.find(function(s) {
+                return serie.imdb === s.imdb;
+            });
+        }
+
         User.prototype.constructor = User;
 
         User.prototype.getData = function() {
             return {
-                name: this.name,
-                email: this.email
+                user: {
+                   name: this.name,
+                   email: this.email
+                }
             };
         };
 

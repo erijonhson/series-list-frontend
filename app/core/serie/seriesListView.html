@@ -18,18 +18,18 @@
                         </div>
                       <div class="panel-body">
                           <button 
-                              ng-if="SLC.isWatchingSeries(serie) && SLC.isWatchingView()" id="delete-btn-1"
-                              data-ng-click="SLC.removeUserSeries(serie)" class="btn btn-danger" >
-                              Desisti <span class="glyphicon glyphicon-remove"></span></button>
-                          <button ng-if="!SLC.isWatchingView()" id="add-btn-1" class="btn btn-success" 
-                              data-ng-click="SLC.addUserSeries(serie)" >
-                              Assistindo <span class="glyphicon glyphicon-plus"></span></button>
+                              ng-if="SLC.isWatchingSeries(serie)" id="delete-btn-1"
+                              data-ng-click="SLC.deleteSeries(serie)" class="btn btn-danger" >
+                              Perdi interesse <span class="glyphicon glyphicon-remove"></span></button>
+                          <button ng-if="!SLC.isWatchingSeries(serie)" id="add-btn-1" class="btn btn-success" 
+                              data-ng-click="SLC.addWatchingSeries(serie)" >
+                              Acompanhar <span class="glyphicon glyphicon-plus"></span></button>
                       </div>
                       <div class="panel-body">
                           <button ng-if="SLC.isWishingSeries(serie)" id="delete-btn-2" class="btn btn-danger" 
-                              data-ng-click="SLC.removeWishingSeries(serie)" >
-                              Desisti <span class="glyphicon glyphicon-remove"></span></button>
-                          <button ng-if="!SLC.isWatchingSeries(serie)" id="add-btn-2" class="btn btn-success" 
+                              data-ng-click="SLC.deleteSeries(serie)" >
+                              Perdi interesse <span class="glyphicon glyphicon-remove"></span></button>
+                          <button ng-if="!SLC.isWishingSeries(serie) && !SLC.isWatchingSeries(serie)" id="add-btn-2" class="btn btn-success" 
                               data-ng-click="SLC.addWishingSeries(serie)" >
                               Desejo assistir <span class="glyphicon glyphicon-plus"></span></button>
                       </div>

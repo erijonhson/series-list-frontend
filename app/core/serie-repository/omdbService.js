@@ -14,14 +14,7 @@
     function omdbService($http, Serie) {
         var vm = this;
         const OMDB_NAME = 'http://www.omdbapi.com/?apikey=93330d3c&r=json&type=series&s=';
-        const CONFIG = {timeout: 5000, ignoreLoadingBar: true, transformRequest: transform}; // transformRequest: transform
-
-        function transform(data, headersGetter) {
-            var headers = headersGetter();
-            delete headers['if-modified-since']; // 'if-modified-since', 'X-Requested-With'
-            delete headers['accept'];
-            return headers;
-        }
+        const CONFIG = {timeout: 5000, headers: {'if-modified-since': undefined}};
 
         /**
          * Find serie by name.
