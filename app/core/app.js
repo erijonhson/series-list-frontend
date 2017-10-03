@@ -3,6 +3,7 @@
 
     angular.module('app', [
         'ui.router',
+        'ui.bootstrap',
         'ng-token-auth',
         'angular-loading-bar',
         'toastr',
@@ -12,12 +13,12 @@
         'app.nav.menu',
         'app.directives.datepicker',
         'app.directives.about',
-        'app.directives.modal',
         'app.session',
         'app.sessionService',
         'app.user',
         'app.serie',
         'app.serie.list',
+        'app.serie.details',
         'app.omdbapi',
     ]);
 })();

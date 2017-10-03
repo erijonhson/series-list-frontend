@@ -22,9 +22,11 @@
             this.id = data.id;
             this.imdb = data.imdbID;
             this.posterUrl = data.Poster;
+            this.title = data.Title;
             if (data.attributes) {
                 this.imdb = data.attributes['imdb'];
                 this.posterUrl = data.attributes['poster-uri'];
+                this.title = data.attributes['title'];
                 this.my_rating = data.attributes['my-rating'];
                 this.last_season = data.attributes['last-season'];
                 this.last_episode = data.attributes['last-episode'];
@@ -101,14 +103,14 @@
          */
         Serie.prototype.loadDetails = function () {
             var temp = this;
-            const uri = API_URIS.OMDBBYID + temp.imdbID;
-            return $http.get(getUri, {
+            const uri = API_URIS.OMDBBYID + temp.imdb;
+            return $http.get(uri, {
                     timeout: 4000, 
                     headers: {'if-modified-since': undefined}
                 }).then(function(data) {
                     temp.mergeDetails(data.data);
-                    temp.backup = angular.copy(this);
-                    return this;
+                    temp.backup = angular.copy(temp);
+                    return temp;
                 });
         };
 
@@ -116,11 +118,14 @@
          * Merge incoming information to the object by updating it.
          */
         Serie.prototype.mergeDetails = function (data) {
-            this.title = data.Title;
             this.year = data.Year;
             this.plot = data.Plot;
             this.rated = data.Rated;
             this.imdbRating = data.imdbRating;
+            this.released = data.Released;
+            this.genre = data.Genre;
+            this.writer = data.Writer;
+            this.totalSeasons = data.totalSeasons;
             if (!this.posterUrl || this.posterUrl === "N/A") {
                 this.posterUrl = DEFAULT_POSTER;
             }
@@ -135,6 +140,7 @@
             return {
                 serie: {
                     id: this.id,
+                    title: this.title,
                     imdb: this.imdb,
                     my_rating: this.my_rating,
                     last_season: this.last_season,

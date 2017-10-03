@@ -1,17 +1,14 @@
-<div class="panel panel-success">
-    <div class="panel-heading">
-        <h3 class="panel-title">Buscar Séries</h3>
-    </div>
-    <div class="panel-body">
-        <form name="SearchForm">
-            <div class="form-group has-feedback" data-ng-class="SearchForm.name.$valid ? 'has-success' : (SearchForm.name.$pristine ? '' : 'has-error')">
-                <input id="name" name="name" type="text" data-ng-model="SLC.serieName" class="form-control" required />
-                <span class="glyphicon form-control-feedback" data-ng-class="SearchForm.name.$valid ? 'glyphicon-ok' : (SearchForm.name.$pristine ? '' : 'glyphicon-remove')"></span>
+<form role="form" ng-submit="SLC.search(SLC.serieName)">
+    <div class="form-group">
+        <div class="md-toolbar-tools search-bar" layout layout-align="center">
+            <div class="input-group input-group-lg">
+                <input data-ng-model="SLC.serieName" type="text" class="form-control" placeholder="Buscar Séries" aria-describedby="sizing-addon1" required >
+                <span class="input-group-addon" id="searchseries" data-ng-click="SLC.search(SLC.serieName)">
+                    <i class="glyphicon glyphicon-search"></i>
+                </span>
             </div>
-            <button id="save-btn" class="btn btn-success" data-ng-click="SLC.search(SLC.serieName)" data-ng-disabled="SearchForm.$invalid">Buscar <span class="glyphicon glyphicon-ok"></span></button>
-        </form>
+        </div>
     </div>
-</div>
+</form>
+
 <div ng-include="'/core/serie/seriesListView.html'"></div>
-<pre>form = {{SLC.serieName| json}}</pre>
-<pre id="SearchForm">SearchForm = {{SLC.SearchForm| json}}</pre>

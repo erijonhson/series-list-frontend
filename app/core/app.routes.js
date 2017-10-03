@@ -4,6 +4,7 @@
     angular.module('app')
 
             .config(interceptorConfig)
+            .config(loadingBarConfig)
             .config(stateConfig)
             .run(run);
 
@@ -26,6 +27,11 @@
 
         $httpProvider.interceptors.push('unauthorizedInterceptor');
 
+    }
+
+    loadingBarConfig.$inject = ['cfpLoadingBarProvider'];
+    function loadingBarConfig(cfpLoadingBarProvider) {
+        cfpLoadingBarProvider.includeSpinner = false;
     }
 
     stateConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$authProvider', 'API_URIS'];

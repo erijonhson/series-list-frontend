@@ -1,0 +1,35 @@
+<div class='ng-modal'>
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="thumbnail" layout layout-align="center">
+            <div class="media">
+                <div class="media-left">
+                    <img src="{{$ctrl.serie.posterUrl}}" alt="{{$ctrl.serie.title}}" />
+                </div>
+                <div class="media-body">
+                    <h2 class="media-heading">{{$ctrl.serie.title}}</h2>
+                    <br>
+                    <p><strong>Lançamento: </strong>{{$ctrl.serie.released}}&emsp;&emsp;
+                        <strong>Período: </strong>{{$ctrl.serie.year}}&emsp;&emsp;
+                        <strong>Nº Temporadas: </strong>{{$ctrl.serie.totalSeasons}}</p>
+                    <p><strong>Sinopse: </strong>{{$ctrl.serie.plot}}</p>
+                    <p><strong>Classificação Etária: </strong>{{$ctrl.serie.rated}}</p>
+                    <p><strong>Gênero: </strong>{{$ctrl.serie.genre}}</p>
+                    <p><strong>Escritor: </strong>{{$ctrl.serie.writer}}</p>
+                    <p><strong>Média do IMDB: </strong>{{$ctrl.serie.imdbRating}}</p>
+                    <form ng-if="$ctrl.isUserSerie($ctrl.serie)">
+                        <p><strong>Minha avaliação: </strong><input type="number" name="rating" min="0" max="10" step="0.1" ng-model="$ctrl.serie.my_rating"></p>
+                        <p><strong>Último epsódio assistido: </strong><input type="text" name="episode" ng-model="$ctrl.serie.last_episode"></p>
+                        <p><strong>Temporada: </strong><input type="number" name="season" min="0" max="{{$ctrl.serie.totalSeasons}}" ng-model="$ctrl.serie.last_season"></p>
+                        <button data-ng-click="$ctrl.update($ctrl.serie)" class="btn btn-success" >
+                            Atualizar informações pessoais
+                            <span id="savedseries" >
+                                <i class="glyphicon glyphicon-saved"></i>
+                            </span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

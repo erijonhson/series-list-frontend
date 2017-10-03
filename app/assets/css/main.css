@@ -4,7 +4,16 @@
     text-decoration: line-through;
     color: #ddd;
 }
+
 .form-control[disabled], .form-control[readonly], .fieldset[disabled], .form-control {
     cursor: pointer;
     background-color: white;
+}
+
+body {
+    padding-top: 5em; /* Required padding for .navbar-fixed-top. */
+}
+
+#searchseries, #imageseries, #savedseries {
+	cursor: pointer;
 }

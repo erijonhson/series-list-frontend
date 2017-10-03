@@ -1,42 +1,33 @@
-
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title">Organizador de Séries</h3>
-    </div>
-    <div class="panel-body">
-        <div class="container">
-          <!-- serie -->
-          <div class="row">
-            <div ng-repeat="serie in SLC.getSeries() track by $index">
-                <div class="col-md-4">
-                  <div class="thumbnail" ng-if="serie !== undefined && serie !== null" >
-                      <a href="#!/serie/{{serie.imdbID}}" >
-                        <img src="{{serie.posterUrl}}" alt="{{serie.title}}" style="width:100%">
-                      </a>
-                        <div class="caption">
-                          <p>{{serie.title}}</p>
+<div class="container">
+    <!-- serie -->
+    <div class="row">
+        <div ng-repeat="serie in SLC.getSeries() track by $index">
+            <div class="col-md-4" ng-if="serie != undefined && serie != null">
+                <div class="thumbnail">
+                    <a id="imageseries" ng-click="SLC.openModal(serie)">
+                        <img src="{{serie.posterUrl}}" alt="{{serie.title}}" style="width:80%" 
+                            class="img-responsive" title="Clique para visualizar detalhes da série" >
+                    </a>
+                        <div class="caption text-center">
+                            <p>{{serie.title}}</p>
                         </div>
-                      <div class="panel-body">
-                          <button 
-                              ng-if="SLC.isWatchingSeries(serie)" id="delete-btn-1"
-                              data-ng-click="SLC.deleteSeries(serie)" class="btn btn-danger" >
-                              Perdi interesse <span class="glyphicon glyphicon-remove"></span></button>
-                          <button ng-if="!SLC.isWatchingSeries(serie)" id="add-btn-1" class="btn btn-success" 
-                              data-ng-click="SLC.addWatchingSeries(serie)" >
-                              Acompanhar <span class="glyphicon glyphicon-plus"></span></button>
-                      </div>
-                      <div class="panel-body">
-                          <button ng-if="SLC.isWishingSeries(serie)" id="delete-btn-2" class="btn btn-danger" 
-                              data-ng-click="SLC.deleteSeries(serie)" >
-                              Perdi interesse <span class="glyphicon glyphicon-remove"></span></button>
-                          <button ng-if="!SLC.isWishingSeries(serie) && !SLC.isWatchingSeries(serie)" id="add-btn-2" class="btn btn-success" 
-                              data-ng-click="SLC.addWishingSeries(serie)" >
-                              Desejo assistir <span class="glyphicon glyphicon-plus"></span></button>
-                      </div>
-                  </div>
+                    <div class="panel-body text-center">
+                        <button 
+                            ng-if="SLC.isWatchingSeries(serie)" id="delete-btn-1"
+                            data-ng-click="SLC.deleteSeries(serie)" class="btn btn-danger" >
+                            Perdi interesse <span class="glyphicon glyphicon-remove"></span></button>
+                        <button ng-if="!SLC.isWatchingSeries(serie)" id="add-btn-1" class="btn btn-success" 
+                            data-ng-click="SLC.addWatchingSeries(serie)" >
+                            Acompanhar <span class="glyphicon glyphicon-plus"></span></button>
+                        <button ng-if="SLC.isWishingSeries(serie)" id="delete-btn-2" class="btn btn-danger" 
+                            data-ng-click="SLC.deleteSeries(serie)" >
+                            Perdi interesse <span class="glyphicon glyphicon-remove"></span></button>
+                        <button ng-if="!SLC.isWishingSeries(serie) && !SLC.isWatchingSeries(serie)" id="add-btn-2" class="btn btn-success" 
+                            data-ng-click="SLC.addWishingSeries(serie)" >
+                            Desejo assistir <span class="glyphicon glyphicon-plus"></span></button>
+                    </div>
                 </div>
             </div>
-          </div>
         </div>
     </div>
 </div>

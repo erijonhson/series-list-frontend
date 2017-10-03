@@ -33,16 +33,13 @@
             return serieCtrl.addOrUpdateSerie().then(function(data) {
                 const serverSerie = new Serie(data.data.data);
 
-                // update
-                var updated = tryUpdateSerie(temp.watching, serverSerie) 
-                                || tryUpdateSerie(temp.wishing, serverSerie);
+                temp.wishing = tryRemoveSeries(temp.wishing, serverSerie);
+                temp.watching = tryRemoveSeries(temp.watching, serverSerie);
 
-                // add
-                if (!updated) {
-                    if (serverSerie.serie_type === 'watching')
-                        addSerie(temp.watching, serverSerie);
-                    else
-                        addSerie(temp.wishing, serverSerie);
+                if (serverSerie.serie_type === 'watching') {                        
+                    addSerie(temp.watching, serverSerie);
+                } else {
+                    addSerie(temp.wishing, serverSerie);
                 }
 
                 return { data: serverSerie };
@@ -64,19 +61,6 @@
         function addSerie(list, serie) {
             var inList = getSerie(list, serie);
             if (!inList) list.push(serie);
-        }
-
-        /**
-         * Try to update a series, return true if affirmative or false otherwise.
-         */
-        function tryUpdateSerie(list, serie) {
-            for (var i = list.length - 1; i >= 0; i--) {
-                if (list[i].imdb === serie.imdb) {
-                    list[i] = serie;
-                    return true;
-                }
-            }
-            return false;
         }
 
         /**
@@ -126,21 +110,24 @@
          * Get watching series list of the User.
          */
         User.prototype.getWatchingList = function() {
-            return this.watching;
+            var temp = this;
+            return temp.watching;
         }
 
         /**
          * Get wishing series list of the User.
          */
         User.prototype.getWishingList = function() {
-            return this.wishing;
+            var temp = this;
+            return temp.wishing;
         }
 
         /**
          * Check if exists series in watching series list of the User.
          */
         User.prototype.isWatchingSeries = function(serie) {
-            return this.watching.find(function(s) {
+            var temp = this;
+            return temp.watching.find(function(s) {
                 return serie.imdb === s.imdb;
             });
         }
@@ -149,7 +136,8 @@
          * Check if exists series in wishing series list of the User.
          */
         User.prototype.isWishingSeries = function(serie) {
-            return this.wishing.find(function(s) {
+            var temp = this;
+            return temp.wishing.find(function(s) {
                 return serie.imdb === s.imdb;
             });
         }

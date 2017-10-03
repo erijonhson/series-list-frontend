@@ -1,19 +1,29 @@
 (function () {
     'use strict';
 
-    angular.module('app.serie.list', ['ui.router', 'app.omdbapi', 'app.sessionService', 'toastr'])
+    angular.module('app.serie.list', ['ui.router', 'ui.bootstrap', 'app.omdbapi', 'app.sessionService', 'toastr'])
 
             .controller('SerieListController', SerieListController);
 
-    SerieListController.$inject = ['$state', '$q', '$location', 'omdbService', 'sessionService', 'toastr'];
+    SerieListController.$inject = ['$state', '$q', '$location', 'omdbService', 'sessionService', '$uibModal', 'toastr'];
 
-    function SerieListController($state, $q, $location, omdbService, sessionService, toastr) {
+    function SerieListController($state, $q, $location, omdbService, sessionService, $uibModal, toastr) {
         var vm = this;
 
         vm.currentUser = sessionService.getLoggedUser();
-
         vm.series = {
             list: []
+        }
+
+        vm.openModal = function(serie) {
+            $uibModal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                component: 'serieDetailsComponent',
+                size: 'lg',
+                resolve: { serie: serie }
+            });
         }
 
         vm.getSeries = function() {
