@@ -1,7 +1,7 @@
 (function () {
     'use strict';
-    // const apiRoot = 'https://task-manager-elife.herokuapp.com/api';
-    const apiRoot = 'http://0.0.0.0:3000/api/v1';
+    const apiRoot = 'https://series-list-backend.herokuapp.com/api/v1';
+    // const apiRoot = 'http://0.0.0.0:3000/api/v1';
     angular.module('app')
 
             .constant('APP_AUTHOR', 'Eri Jonhson')
