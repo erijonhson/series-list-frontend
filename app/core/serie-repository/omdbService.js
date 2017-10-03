@@ -13,7 +13,7 @@
     */
     function omdbService($http, Serie) {
         var vm = this;
-        const OMDB_NAME = 'http://www.omdbapi.com/?apikey=93330d3c&r=json&type=series&s=';
+        const OMDB_NAME = 'https://www.omdbapi.com/?apikey=93330d3c&r=json&type=series&s=';
         const CONFIG = {timeout: 5000, headers: {'if-modified-since': undefined}};
 
         /**
